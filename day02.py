@@ -32,6 +32,7 @@ reports = []
 
 with open('day02-input', 'r') as data:
     safe_levels = 0
+    safe_levels_with_problem_dampener = 0
     for line in data:
         elements = line.strip().split()
         reports.append(np.array(elements, dtype=int))
@@ -45,6 +46,7 @@ for report in reports:
             new_report = np.delete(report, i)
             safe = check_report(new_report)
             if safe:
-                safe_levels += 1
+                safe_levels_with_problem_dampener += 1
                 break
 print("Total safe levels: {}".format(safe_levels))
+print("Total safe levels including Problem Dampener: {}".format(safe_levels_with_problem_dampener + safe_levels))
