@@ -7,7 +7,6 @@ with open("day03-input") as file:
 pattern = r'mul\(\d{1,3},\d{1,3}\)|do\(\)|don\'t\(\)'
 matches = re.findall(pattern, data)
 
-pattern = r'\d{1,3}'
 total = 0
 total_with_do = 0
 adding = True
