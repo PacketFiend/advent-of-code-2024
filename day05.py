@@ -34,6 +34,7 @@ def evaluate_all_rules(pages, rules):
 
 
 def reorder_pages(pages, rules):
+    global swaps
     # print("Begin reorder_pages()")
     update_is_valid = False
     new_page_order = pages[:]
@@ -46,6 +47,7 @@ def reorder_pages(pages, rules):
             if rule0_index >= rule1_index:
                 # print("Reordering pages {} according to rule {}".format("\t".join(p for p in new_page_order), rule))
                 new_page_order[rule0_index],new_page_order[rule1_index] = pages[rule1_index], pages[rule0_index]
+                swaps += 1
                 # print("Reordered pages:{}".format("\t".join(p for p in new_page_order)))
                 # print("")
                 update_is_valid = evaluate_all_rules(new_page_order, rules)
@@ -57,7 +59,8 @@ def reorder_pages(pages, rules):
     # print("End reorder_pages()")
     return new_page_order
 
-
+global swaps
+swaps = 0
 updates, reordered_updates, rules = [], [], []
 update_is_valid = True
 valid_updates = []
@@ -130,3 +133,4 @@ for update in reordered_updates:
     # print("The middle page in {} is {}".format(update, update[middle_index]))
     middle_page_number_sum += int(update[middle_index])
 print("The sum of all middle page numbers (from reordered updates) is {}".format(middle_page_number_sum))
+print("Total swaps: {}".format(swaps))
